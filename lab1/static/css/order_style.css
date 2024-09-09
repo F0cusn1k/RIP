@@ -1,0 +1,111 @@
+.logo{
+    width: 300px;
+    height: 300px;
+    align-self: center;
+    border-style:double;
+    border-color: #544276;
+    border-radius: 30px;
+    background-color: #544276;
+}
+
+.red-text {
+    color: #dd1100;
+  }
+  
+  .orange-text {
+    color: #ff7e00;
+}
+
+.logo-small {
+    display: flex;
+    gap: 2px;
+    font-size: 16px;
+    margin-top: -52px;
+    height: 30px;
+}
+
+.logo-text-small {
+    flex-basis: auto;
+    padding-bottom: -50px;
+    margin: auto 0 -52px;
+    border: 0px;
+    font-size: 16px;
+    margin-left: -5px;
+    margin-top: 42px;
+    height: 30px;
+}
+
+.logo-icon-small {
+    aspect-ratio: 1;
+    object-fit: contain;
+    object-position: center;
+    width: 31px;
+    margin: 0 0 -80px 4px;
+}
+
+.calculator-container {
+    background-color: #fff;
+    display: flex;
+    max-width: 960px;
+    flex-direction: column;
+    overflow: hidden;
+    align-items: start;
+    padding: 8px 80px 204px 0;
+}
+  
+.header {
+    display: flex;
+    gap: 3px;
+    color: #000;
+    text-align: center;
+    font: 400 16px Ubuntu, sans-serif;
+}
+  
+.main-content {
+    width: 100%;
+    margin: 62px 0 0 13px;
+}
+  
+.content-wrapper {
+    gap: 20px;
+    display: flex;
+}
+  
+.factorial-symbol {
+    display: flex;
+    line-height: normal;
+    width: 38%;
+    margin-left: 0;
+}
+  
+.factorial-description {
+    display: flex;
+    flex-direction: column;
+    line-height: normal;
+    width: 62%;
+    margin-left: 20px;
+}
+  
+.description-wrapper {
+    flex-direction: column;
+    font-family: Ubuntu, sans-serif;
+    color: #000;
+    font-weight: 400;
+    margin-left: -40px;
+    align-self:baseline;
+    align-content: left;
+    align-items: right;
+    text-align: center;
+}
+  
+
+  
+.title {
+    font-size: 60px;
+}
+  
+.description {
+    font-size: 20px;
+    margin-top: 28px;
+    align-self: center;
+}

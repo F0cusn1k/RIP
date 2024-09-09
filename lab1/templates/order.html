@@ -1,0 +1,33 @@
+<!doctype html>
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/order_style.css' %}">
+<section class="calculator-container">
+    <header class="header">
+        <div class="logo-small">
+            <img loading="lazy" src="http://127.0.0.1:9000/rip/10.png" class="logo-icon-small" alt="" />
+            <form action="{% url 'home_page_url' %}" method="get">
+            <button class="logo-text-small" type="submit" >
+                <span class="red-text">Вычислитель</span>
+                <span class="orange-text">Онлайн</span>
+            </button>
+            </form>
+        </div>
+    </header>
+      
+    <main class="main-content">
+    <div class="content-wrapper">
+        <div class="factorial-symbol">
+            <img loading="lazy" src="{{ data.image }}" class = "logo" alt="Calculator information" />
+        </div>
+        <div class="factorial-description">
+            <div class="description-wrapper">
+                <h2 class="title">{{ data.title }}</h2>
+                <p class="description">
+                    {{ data.description }}
+                </p>
+            </div>
+        </div>
+    </div>
+    </main>
+</section>
+</html>

@@ -1,0 +1,255 @@
+.logo{
+    width: 70px;
+    height: 70px;
+    align-self: center;
+    border-style:double;
+    border-color: #544276;
+    border-radius: 7px;
+}
+
+.calculator-card {
+    border-radius: 10px;
+    background-color: #544276;
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+    align-self: auto;
+    display: flex;
+    width: 125px;
+    max-width: 100%;
+    flex-direction: column;
+    margin-bottom: 10px;
+    margin-left: 10px;
+    padding: 15px 16px;
+    border: 1px solid #000;
+    align-items: center;
+}
+
+.calculator-function {
+    font-size: 18px;
+    margin-top: 20px;
+    margin-left: 10px;
+    text-align: center;
+    color: #fff;
+}
+
+.info-card-button {
+    border-radius: 5px;
+    background-color: #6c5694;
+    margin-top: 29px;
+    font-size: 12px;
+    color: #fff;
+    padding: 5px 10px;
+    border: 1px solid #6c5694;
+    align-self: center;
+}
+  
+.info-card-button:hover {
+    background-color: #604c85;
+    border: 1px solid #ae9dce;
+}
+  
+
+
+.logo-small {
+    display: flex;
+    gap: 2px;
+    font-size: 16px;
+    margin-top: -52px;
+    height: 30px;
+}
+
+.header {
+    display: flex;
+    gap: 3px;
+    color: #000;
+    text-align: center;
+    font: 400 16px Ubuntu, sans-serif;
+}
+
+.logo-text-small {
+    flex-basis: auto;
+    padding-bottom: -50px;
+    margin: auto 0 -52px;
+    border: 0px;
+    font-size: 16px;
+    margin-left: -5px;
+    margin-top: 42px;
+    height: 30px;
+}
+
+.logo-icon-small {
+    aspect-ratio: 1;
+    object-fit: contain;
+    object-position: center;
+    width: 31px;
+    margin: 0 0 -80px 4px;
+}
+
+.calculator-section {
+    background-color: #fff;
+    display: flex;
+    max-width: 960px;
+    flex-direction: column;
+    overflow: hidden;
+    align-items: start;
+    font-family: Ubuntu, sans-serif;
+    color: #000;
+    font-weight: 400;
+    padding: 8px 12px 0px 0;
+}
+
+.red-text {
+    color: #dd1100;
+  }
+  
+  .orange-text {
+    color: #ff7e00;
+}
+
+.main-title {
+    font-size: 50px;
+    align-self: center;
+}
+
+.calculator-container {
+    border-radius: 20px;
+    background-color: #fff;
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.75);
+    display: flex;
+    width: auto;
+    align-items: end;
+    gap: 20px;
+    color: #fff;
+    text-align: center;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin: 0px 0 0 11px;
+    padding: 18px 52px 29px 15px;
+    border: 1px solid #544276;
+}
+
+.calculator-item {
+    display: flex;
+    flex-direction: column;
+    white-space: nowrap;
+    align-items: center;
+}
+
+.description {
+    font-size: 20px;
+    margin-top: 28px;
+    align-self: flex-end;
+    font-family: Ubuntu, sans-serif;
+    color: #000000;
+    margin-bottom: 0px;
+}
+
+.calculator-box {
+    border-radius: 10px;
+    background-color: #544276;
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+    display: flex;
+    flex-direction: column;
+    padding: 15px 16px 14px;
+    border: 1px solid #000;
+}
+
+.calculator-symbol {
+    font-size: 64px;
+    align-self: center;
+}
+
+.calculator-name {
+    font-size: 18px;
+    margin-top: 20px;
+}
+
+.details-button {
+    border-radius: 5px;
+    background-color: #6c5694;
+    margin-top: 29px;
+    font-size: 12px;
+    padding: 5px 10px;
+}
+
+.add-button {
+    border-radius: 20px;
+    background-color: #fff;
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.75);
+    align-self: center;
+    display: flex;
+    margin-top: 13px;
+    width: 26px;
+    height: 26px;
+    border: 1px solid #544276;
+    align-self: center;
+} 
+
+.add-button:checked{
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.75);
+    border-color: #544276;
+    background-color: #544276;
+}
+
+.custom-checkbox {
+    position: absolute;
+    z-index: -1;
+    opacity: 0;
+}
+
+.custom-checkbox+label {
+    display: inline-flex;
+    align-items: center;
+    user-select: none;
+}
+
+.custom-checkbox+label::before {
+    content: '';
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+    flex-shrink: 0;
+    flex-grow: 0;
+    width: 26px;
+    height: 26px;
+    border: 1px solid #544276;
+    border-radius: 30%;
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.75);
+}
+
+.custom-checkbox:checked+label::before {
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.75);
+    border-color: #544276;
+    background-color: #544276;
+  }
+
+@media (max-width: 991px) {
+.main-title {
+    max-width: 100%;
+    font-size: 30px;
+}
+
+.calculator-container {
+    padding-right: 20px;
+}
+
+.calculator-item {
+    white-space: initial;
+}
+
+.calculator-box {
+    white-space: initial;
+}
+
+.calculator-symbol {
+    font-size: 40px;
+}
+
+.details-button {
+    white-space: initial;
+    margin: 0 3px 0 7px;
+}
+
+.add-button {
+    margin-top: 40px;
+}
+}
