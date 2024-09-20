@@ -6,8 +6,8 @@
       <div class="logo-search-container">
         <div class="logo-search-wrapper">
           <div class="logo-small">
-            <img loading="lazy" src="http://127.0.0.1:9000/rip/10.png" class="logo-icon-small" alt="" />
-            <form action="{% url 'home_page_url' %}" method="get">
+            <img loading="lazy" src="{{ data.logo1 }}" class="logo-icon-small" alt="" />
+            <form action="{% url 'home_page_url' %}">
             <button class="logo-text-small" type="submit">
               <span class="red-text">Вычислитель</span>
               <span class="orange-text">Онлайн</span>
@@ -15,7 +15,7 @@
             </form>
           </div>
           <div class="logo-large">
-            <img loading="lazy" src="http://127.0.0.1:9000/rip/11.png" class="logo-icon-large" alt="" />
+            <img loading="lazy" src="{{ data.logo2 }}" class="logo-icon-large" alt="" />
             <div class="logo-text-large">
               <span class="red-text">Вычислитель</span>
               <span class="orange-text">Онлайн</span>
@@ -23,46 +23,40 @@
           </div>
         </div>
         <form action="" method="get" class="search-area">
-            <input class="search-input" placeholder="Поиск..." aria-label="Поиск" name="q" type="text" value="{{ data.search_query }}">
-        </form>
-      </div>
-      <div class="info-card">
-        <img loading="lazy" src="http://127.0.0.1:9000/rip/12.png" class="info-card-image" alt="Calculator information" />
-        <form action="{% url 'basket_url' %}" method="get">
-            <button class="info-card-button" type="submit">Вычисления(4)</button>
+            <input class="search-input" placeholder="Поиск..." aria-label="Поиск" name="query" type="text" value="{{ data.search_query }}">
         </form>
       </div>
     </header>
     <main class="calculator-grid">
         <div class="calculator-row">
             {% if data.count == 8 %}
-              {% for order in data.orders %}
-                  {% if order.id == 5 %}
+              {% for service in data.services %}
+                  {% if service.id == 5 %}
                       </div>
                       </div>
                       </div>
                       </div>
                   {% endif %}
-                  {% if order.id == 1 or order.id == 5 %}
-                      {% if order.id == 1 %}
+                  {% if service.id == 1 or service.id == 5 %}
+                      {% if service.id == 1 %}
                       <div class="calculator-column1">
                       {% endif %}
-                      {% if order.id == 5 %}
+                      {% if service.id == 5 %}
                       <div class="calculator-column2">
                       {% endif %}
                           <div class="calculator-group">
                               <div class="calculator-subgroup">
                   {% endif %}
-                  {% if order.id == 3 or order.id == 7 %}
+                  {% if service.id == 3 or service.id == 7 %}
                       </div>
                   {% endif %}
-                  {% if order.id == 1 or order.id == 3 or order.id == 5 or order.id == 7 %}
+                  {% if service.id == 1 or service.id == 3 or service.id == 5 or service.id == 7 %}
                       <div class="calculator-item">
                   {% endif %}
                   <div class="calculator-card">
-                      <img loading="lazy" src=" {{ order.image }} " class = "logo" alt="Calculator information" />
-                      <span class="calculator-function">{{ order.title }}</span>
-                      <form action="{% url 'order_url' order.id %}" method="get">
+                      <img loading="lazy" src=" {{ service.image }} " class = "logo" alt="Calculator information" />
+                      <span class="calculator-function">{{ service.title }}</span>
+                      <form action="{% url 'service_url' service.id %}" method="get">
                       <button class="info-card-button" type="submit">Подробнее</button>
                       </form>
                   </div>
@@ -80,11 +74,11 @@
                   <br/>
                   &emsp;поиска
                 </p>
-              {% for order in data.orders %}
+              {% for service in data.services %}
                 <div class="calculator-card">
-                  <img loading="lazy" src=" {{ order.image }} " class = "logo" alt="Calculator information" />
-                  <span class="calculator-function">{{ order.title }}</span>
-                  <form action="{% url 'order_url' order.id %}" method="get">
+                  <img loading="lazy" src=" {{ service.image }} " class = "logo" alt="Calculator information" />
+                  <span class="calculator-function">{{ service.title }}</span>
+                  <form action="{% url 'service_url' service.id %}" method="get">
                   <button class="info-card-button" type="submit">Подробнее</button>
                   </form>
                 </div>
@@ -95,4 +89,10 @@
       </div>
     </main>
   </section>
+  <div class="info-card">
+    <img loading="lazy" src="{{ data.basket_logo }}" class="info-card-image" alt="Calculator information" />
+    <form action="{% url 'calculation' data.calculation_id %}" method="get">
+        <button class="info-card-button" type="submit">Вычисления(4)</button>
+    </form>
+  </div>
   </html>

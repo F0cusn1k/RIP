@@ -28,7 +28,8 @@ from templates import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('hello/', views.hello),
-    path('', views.GetOrders, name = 'home_page_url'),
-    path('order/<int:id>/', views.GetOrder, name = 'order_url'),
+    path('', views.GetServices, name = 'home_page_url'),
+    path('service/<int:id>/', views.GetService, name = 'service_url'),
     path('basket/', views.GetBasket, name = 'basket_url'),
+    path('calculation/<int:id>/', views.GetCalculation, name='calculation'),
 ]
