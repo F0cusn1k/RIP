@@ -1,6 +1,8 @@
 .search-items-section{
   margin-top: 30px;
   width: auto;
+  border-color: #000;
+  border-width: 2px;
   align-items: start;
   gap: 20px;
   flex-wrap: wrap;
