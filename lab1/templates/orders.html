@@ -1,18 +1,3 @@
-<!--
-
-{% block title %}Список заказов{% endblock %}
-
-{% block content %}
-<ul>
-    {% for order in data.orders %}
-       {% include 'order_element.html' with element=order %}
-    {% empty %}
-        <li>Список пуст</li>
-    {% endfor %}
-    <li><a href="{% url 'basket_url' %}"> Корзина</a></li>
-</ul>
-{% endblock %} -->
-
 <!doctype html>
 {% load static %}
 <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
