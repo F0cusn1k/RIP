@@ -4,7 +4,7 @@
 <section class="calculator-container">
     <header class="header">
         <div class="logo-small">
-            <img loading="lazy" src="http://127.0.0.1:9000/rip/10.png" class="logo-icon-small" alt="" />
+            <img loading="lazy" src="{{ data.logo1 }}" class="logo-icon-small" alt="" />
             <form action="{% url 'home_page_url' %}" method="get">
             <button class="logo-text-small" type="submit" >
                 <span class="red-text">Вычислитель</span>
@@ -17,13 +17,13 @@
     <main class="main-content">
     <div class="content-wrapper">
         <div class="factorial-symbol">
-            <img loading="lazy" src="{{ data.image }}" class = "logo" alt="Calculator information" />
+            <img loading="lazy" src="{{ data.info.image }}" class = "logo" alt="Calculator information" />
         </div>
         <div class="factorial-description">
             <div class="description-wrapper">
-                <h2 class="title">{{ data.title }}</h2>
+                <h2 class="title">{{ data.info.title }}</h2>
                 <p class="description">
-                    {{ data.description }}
+                    {{ data.info.description }}
                 </p>
             </div>
         </div>

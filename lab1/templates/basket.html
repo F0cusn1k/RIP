@@ -1,31 +1,10 @@
-<!-- <!doctype html>
-{% load static %}
-<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
-<html lang="en" class="h-100">
-    <head>
-        <meta charset="utf-8">
-        <title>Basket</title>
-    </head>
-    <body>
-        Hola
-        <div class = "order-text">Это корзина с названием: {{ data.title }}</div>
-        <div>Количество товаров в корзине - {{ data.ordercounter }}</div>
-        <div>Список товаров в корзине:</div>
-        <br><br>
-        <br><br>
-        <br><br>
-        <img src="http://127.0.0.1:9000/rip/factorial.png" alt="AUU">
-        <li><a href="{% url 'home_page_url' %}">Домой(что домыть?)</a> </li>
-    </body>
-</html> -->
-
 <!doctype html>
 {% load static %}
 <link rel="stylesheet" type="text/css" href="{% static 'css/basket_style.css' %}"> 
     <section class="calculator-section">
         <header class="header">
             <div class="logo-small">
-                <img loading="lazy" src="http://127.0.0.1:9000/rip/10.png" class="logo-icon-small" alt="" />
+                <img loading="lazy" src="{{ data.logo1 }}" class="logo-icon-small" alt="" />
                 <form action="{% url 'home_page_url' %}" method="get">
                 <button class="logo-text-small" type="submit" >
                     <span class="red-text">Вычислитель</span>
@@ -36,67 +15,27 @@
         </header>
       
         <h2 class="main-title">Формирование вычислений</h2>
+        <h4 class="description-creator">Создатель заявки: Андреев Валерий Павлович</h4>
       
-      <!-- <div class="calculator-container">
-        <div class="calculator-item">
-          <div class="calculator-box">
-            <span class="calculator-symbol">!</span>
-            <span class="calculator-name">Факториал</span>
-            <button class="details-button">Подробнее</button>
-          </div>
-          <button class="add-button" aria-label="Add calculator"></button>
-        </div>
-      </div> -->
     <div class="calculator-container">
         <p class="description">
             Необходимо
             <br/>
             два числа
         </p>
-        <div class="calculator-item">
-            <div class="calculator-card">
-                <img loading="lazy" src=" http://127.0.0.1:9000/rip/1.png " class = "logo" alt="Calculator information" />
-                <span class="calculator-function">Факториал</span>
-                <form action="{% url 'order_url' 1 %}" method="get">
-                    <button class="info-card-button" type="submit">Подробнее</button>
-                </form>
+        {% for service in data.services %}
+            <div class="calculator-item">
+                <div class="calculator-card">
+                    <img loading="lazy" src="{{ service.image }}" class = "logo" alt="Calculator information" />
+                    <span class="calculator-function">{{ service.title }}</span>
+                    <form action="{% url 'service_url' service.id %}" method="get">
+                        <button class="info-card-button" type="submit">Подробнее</button>
+                    </form>
+                </div>
+                <input type="checkbox" class="custom-checkbox" id="{{ service.id }}">
+                <label for="{{ service.id }}"></label>
             </div>
-            <input type="checkbox" class="custom-checkbox" id="0">
-            <label for="0"></label>
-        </div>
-        <div class="calculator-item">
-            <div class="calculator-card">
-                <img loading="lazy" src=" http://127.0.0.1:9000/rip/7.png " class = "logo" alt="Calculator information" />
-                <span class="calculator-function">C из n по k</span>
-                <form action="{% url 'order_url' 7 %}" method="get">
-                    <button class="info-card-button" type="submit">Подробнее</button>
-                </form>
-            </div>
-            <input type="checkbox" class="custom-checkbox" id="3">
-            <label for="3"></label>
-        </div>
-        <div class="calculator-item">
-            <div class="calculator-card">
-                <img loading="lazy" src=" http://127.0.0.1:9000/rip/3.png " class = "logo" alt="Calculator information" />
-                <span class="calculator-function">Корень</span>
-                <form action="{% url 'order_url' 3 %}" method="get">
-                    <button class="info-card-button" type="submit">Подробнее</button>
-                </form>
-            </div>
-            <input type="checkbox" class="custom-checkbox" id="1">
-            <label for="1"></label>
-        </div>
-        <div class="calculator-item">
-            <div class="calculator-card">
-                <img loading="lazy" src=" http://127.0.0.1:9000/rip/5.png " class = "logo" alt="Calculator information" />
-                <span class="calculator-function">НОК</span>
-                <form action="{% url 'order_url' 5 %}" method="get">
-                    <button class="info-card-button" type="submit">Подробнее</button>
-                </form>
-            </div>
-            <input type="checkbox" class="custom-checkbox" id="2">
-            <label for="2"></label>
-        </div>
+        {% endfor %}
     </div>
     </section>
 </html>
