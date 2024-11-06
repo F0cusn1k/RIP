@@ -40,6 +40,7 @@ def add_operation_to_draft_calculation(request, operation_id):
         draft_calculation.date_created = timezone.now()
         draft_calculation.save()
 
+
     if OperationCalculation.objects.filter(calculation=draft_calculation, operation=operation).exists():
         return redirect("/")
 
