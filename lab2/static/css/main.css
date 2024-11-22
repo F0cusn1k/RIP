@@ -128,10 +128,13 @@
 }
 
 .cards-wrapper .card img {
-    height: 200px;
-    width: 50%;
+    width: 80px;
     margin: auto;
-    padding: 25px 0;
+    /* padding: auto; */
+    margin-right: auto;
+    margin-left: auto;
+    margin-bottom: -40px;
+    /* padding: 25px 0; */
 }
 
 .operation-preview {

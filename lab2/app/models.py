@@ -38,6 +38,7 @@ class Calculation(models.Model):
     moderator = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name="Модератор", null=True, related_name='moderator')
 
     number = models.IntegerField(blank=True, null=True)
+    calculation_creator = models.TextField(blank=True, null=True)
 
     def __str__(self):
         return "Вычисление №" + str(self.pk)

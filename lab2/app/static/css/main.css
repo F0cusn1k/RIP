@@ -118,20 +118,22 @@
 }
 
 .cards-wrapper .card .card-body {
-    display: flex;
+    /* display: flex; */
     flex-direction: column;
     justify-content: space-between;
 }
 
 .cards-wrapper .card .card-body .card-info {
-    margin-bottom: 25px;
+    /* margin-bottom: 25px; */
 }
 
 .cards-wrapper .card img {
-    height: 200px;
-    width: 50%;
-    margin: auto;
-    padding: 25px 0;
+    width: 80px;
+    /* margin: auto; */
+    margin-right: auto;
+    margin-left: auto;
+    margin-bottom: -40px;
+    padding: 10px;
 }
 
 .goool {
@@ -142,7 +144,7 @@
 }
 
 .operation-preview {
-    width: 80%;
+    width: 80px;
     height: 80px;
     background-size: cover;
 }
