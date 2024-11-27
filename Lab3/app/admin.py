@@ -1,7 +1,6 @@
 from django.contrib import admin
+from app.models import *
 
-from .models import *
-
-admin.site.register(Astronaut)
-admin.site.register(Flight)
-admin.site.register(AstronautFlight)
+admin.site.register(Operation)
+admin.site.register(Calculation)
+admin.site.register(OperationCalculation)

@@ -11,6 +11,10 @@ def random_date():
 def random_timedelta(factor=100):
     return timedelta(random.uniform(0, 1) * factor)
 
-
-def random_bool():
-    return bool(random.getrandbits(1))
+STATUS_CHOICES = (
+    (1, 'Введён'),
+    (2, 'В работе'),
+    (3, 'Завершен'),
+    (4, 'Отклонен'),
+    (5, 'Удален')
+)
