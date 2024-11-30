@@ -27,11 +27,6 @@
     </div>
 {% else %}
     <div class="card">
-        {% if operation.number %}
-        <br>
-        {% else %}
-            <img src="{{ operation.image_url }}" class="operation-preview" alt="" />
-        {% endif %}
         <div class="card-body" >
             <div class="card-info" style="margin-bottom: 20px;" >
                 {% if operation.number %}
@@ -40,19 +35,6 @@
                     <h5 class="card-title">{{ operation.name }}</h5>
                 {% endif %}
                 <p class="card-text">Параметр: {{ operation.number }}</p>
-            </div>
-            <div class="row card-btns">
-                <div class="col d-flex justify-content-center flex-grow-1">
-                    <a href="/operations/{{ operation.id }}" class="btn btn-primary">
-                        Открыть
-                    </a>
-                </div>
-                <form method="post" action="{% url 'add_operation_to_draft_calculation' operation.id %}" class="col d-flex justify-content-center">
-                    {% csrf_token %}
-                    <button class="add-btn btn btn-secondary" type="submit">
-                        Добавить
-                    </button>
-                </form>
             </div>
         </div>
     </div>

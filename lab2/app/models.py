@@ -8,8 +8,8 @@ from app.utils import STATUS_CHOICES
 
 class Operation(models.Model):
     STATUS_CHOICES = (
-        (1, 'Действует'),
-        (2, 'Удалена'),
+        (1, 'Не добавлена'),
+        (2, 'В работе')
     )
 
     name = models.CharField(max_length=100, verbose_name="Название", blank=True, null=True)
@@ -17,7 +17,7 @@ class Operation(models.Model):
     image = models.ImageField(default="images/default.png", blank=True, null=True)
     description = models.TextField(verbose_name="Описание", blank=True, null=True)
 
-    parameters = models.IntegerField(blank=True, null=True)
+    number = models.IntegerField(blank=True, null=True)
 
     def __str__(self):
         return self.name
@@ -37,7 +37,8 @@ class Calculation(models.Model):
     owner = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name="Пользователь", null=True, related_name='owner')
     moderator = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name="Модератор", null=True, related_name='moderator')
 
-    number = models.IntegerField(blank=True, null=True)
+    #number = models.IntegerField(blank=True, null=True)
+    priority = models.CharField(max_length=50, verbose_name="Приоритет", blank=True, null=True)
     calculation_creator = models.TextField(blank=True, null=True)
 
     def __str__(self):

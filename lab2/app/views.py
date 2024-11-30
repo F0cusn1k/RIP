@@ -58,23 +58,19 @@ def add_operation_to_draft_calculation(request, operation_id):
 def operation_details(request, operation_id):
 
     operation = Operation.objects.get(id=operation_id)
-    operation.image_url = f"http://127.0.0.1:9000/rip/{operation.image}"  # Добавьте полный URL
+    operation.image_url = f"http://127.0.0.1:9000/rip/{operation.image}"
     
     context = {
         "operation": operation
     }
-    
-    # context = {
-    #     "operation": Operation.objects.get(id=operation_id)
-    # }
 
     return render(request, "operation_page.html", context)
 
 def calculation(request, calculation_id):
     calculation = get_object_or_404(Calculation, pk=calculation_id)
-    calculation_number = request.GET.get("calculation_number", "")
+    calculation_priority = request.GET.get("calculation_priority", "")
     calculation_creator = request.GET.get("calculation_creator", "")
-    if calculation.status == 5:
+    if calculation.status == 2 or calculation.status > 3:
         return redirect("/")
 
     operations = calculation.get_operations()
@@ -84,7 +80,7 @@ def calculation(request, calculation_id):
     context = {
         "calculation": calculation,
         "operations": operations,
-        "calculation_number": calculation_number,
+        "calculation_priority": calculation_priority,
         "calculation_creator": calculation_creator,
     }
     return render(request, "calculation_page.html", context)
@@ -92,38 +88,82 @@ def calculation(request, calculation_id):
 def delete_calculation(request, calculation_id):
     if request.method == 'POST':
         calculation = get_object_or_404(Calculation, pk=calculation_id)
-        new_calculation_number = request.POST.get('calculation_number', '').strip()
-        new_calculation_creator = request.POST.get('calculation_creator', '').strip()
-        
-        if not new_calculation_number.isdigit():
-            return render(request, 'error_page.html', {'error': 'Не введено корректное число для обработки'})
-        
-        new_calculation_number = int(new_calculation_number)
+        # new_calculation_priority = request.POST.get('calculation_priority', '').strip()
+        # new_calculation_creator = request.POST.get('calculation_creator', '').strip()
 
         # Обновление поля `value` для связанных записей OperationCalculation
-        related_operations = OperationCalculation.objects.filter(calculation_id=calculation_id)
+        # related_operations = OperationCalculation.objects.filter(calculation_id=calculation_id)
 
-        for op_calc in related_operations:
-            if op_calc.operation and op_calc.operation.id == 1:
-                op_calc.value = factorial(new_calculation_number)
-            elif op_calc.operation:
-                op_calc.value = gcd(op_calc.operation.id, new_calculation_number)
-            else:
-                op_calc.value = None  # Если `operation` отсутствует, оставляем значение пустым
-            op_calc.save()
-
-        # Обновление записи Calculation
-        calculation.calculation_creator = new_calculation_creator
-        calculation.number = new_calculation_number
-        calculation.status = 5
+        # # Обновление записи Calculation
+        # calculation.calculation_creator = new_calculation_creator
+        # calculation.priority = new_calculation_priority
+        calculation.status = 2
+        calculation.date_complete = timezone.now()
         calculation.save()
 
         return redirect("/")
     else:
         return redirect("/")
+    
+from django.http import JsonResponse
+
+def process_operations(request, calculation_id):
+    if request.method == 'POST':
+        calculation = get_object_or_404(Calculation, pk=calculation_id)
+        new_calculation_priority = request.POST.get('calculation_priority', '').strip()
+        new_calculation_creator = request.POST.get('calculation_creator', '').strip()
+
+        # Получаем все операции, связанные с вычислением
+        operations = calculation.get_operations()
+
+        for operation in operations:
+            # Получаем значение из поля для данной операции
+            field_name = f"operation_{operation.id}"
+            input_value = request.POST.get(field_name, '').strip()
+
+            if not input_value.isdigit():
+                return render(
+                    request, 
+                    'error_page.html', 
+                    {'error': f'Введите корректное число для операции {operation.name}'}
+                )
+
+            input_value = int(input_value)
+
+            # Выполняем расчет
+            if operation.number is None:  # Факториал
+                result = factorial(input_value)
+            else:  # НОД
+                result = gcd(operation.number, input_value)
+
+            # Обновляем значение в связанной таблице OperationCalculation
+            operation_calc, created = OperationCalculation.objects.get_or_create(
+                calculation=calculation,
+                operation=operation
+            )
+            operation_calc.value = result
+            operation_calc.save()
+        
+        calculation.calculation_creator = new_calculation_creator
+        calculation.priority = new_calculation_priority
+        calculation.status = 3
+        calculation.date_formation = timezone.now()
+        calculation.save()
+
+        
+        # Возвращаемся на страницу после обработки
+        # return redirect(request.META.get('HTTP_REFERER', '/'))
+        return redirect("/")
+
+    return redirect("/")
+
+
 
 def get_draft_calculation():
-    return Calculation.objects.filter(status=1).first()
+    #return Calculation.objects.filter(status=1).first()
+    return Calculation.objects.filter(status__in=[1, 3]).first()
+
+
 
 
 def get_current_user():

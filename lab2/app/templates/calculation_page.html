@@ -2,6 +2,61 @@
 {% load static %}
 
 {% block content %}
+<main class="container">
+
+    <h3 class="text-center">Черновое вычисление</h3>
+
+    <form method="post" action="{% url 'delete_calculation' calculation.id %}">
+        {% csrf_token %}
+        <div class="d-flex justify-content-between mb-3">
+            <div class="form-group" style="width: 48%;">
+                <label class="form-label">Приоритет вычислений</label>
+                <input type="text" 
+                    class="form-control" 
+                    placeholder="Задайте приоритет" 
+                    name="calculation_priority" 
+                    value="{{ calculation_priority }}">
+            </div>
+            <div class="form-group" style="width: 48%;">
+                <label class="form-label">ФИО создателя заявки</label>
+                <input type="text" 
+                    class="form-control" 
+                    placeholder="Введите ФИО" 
+                    name="calculation_creator" 
+                    value="{{ calculation_creator }}">
+            </div>
+        </div>
+
+        <h4 class="text-center">Операции</h4>
+        <div class="cards-wrapper d-flex flex-column mb-3">
+            {% for operation in operations %}
+                {% include "op_card.html" %}
+                <div class="form-group">
+                    <input type="number" 
+                           class="form-control" 
+                           placeholder="Введите число для операции" 
+                           name="operation_{{ operation.id }}" 
+                           style="width: 280px">
+                    <p>Результат: {{ operation.value|default:"Не рассчитано" }}</p>
+                </div>
+            {% endfor %}
+        </div>
+
+        <div class="d-flex justify-content-end">
+            <button class="btn btn-danger me-2" type="submit" formaction="{% url 'delete_calculation' calculation.id %}">
+                Удалить заявку
+            </button>
+            <button class="btn btn-primary" type="submit" formaction="{% url 'process_operations' calculation.id %}">
+                Сформировать заявку
+            </button>
+        </div>
+    </form>
+
+</main>
+{% endblock content %}
+
+<!--
+
     <main class="container">
 
         <h3  class="text-center">Черновое вычисление</h3>
@@ -32,17 +87,26 @@
             </button>
         </form>
 
-        <h4 class="text-center">Операции</h4>
-
-        <div class="cards-wrapper d-flex flex-column">
-
-            {% for operation in operations %}
-
-                {% include "operation_card.html" %}
-
-            {% endfor %}
-
-        </div>
+        <form method="post" action="{% url 'process_operations' calculation.id %}">
+            {% csrf_token %}
+            <h4 class="text-center">Операции</h4>
+            <div class="cards-wrapper d-flex flex-column">
+                {% for operation in operations %}
+                    {% include "op_card.html" %}
+                    <div class="form-group">
+                        <input type="number" 
+                               class="form-control" 
+                               placeholder="Введите число для операции" 
+                               name="operation_{{ operation.id }}" 
+                               style="width: 280px">
+                    </div>
+                {% endfor %}
+            </div>
+            <button class="btn btn-primary" type="submit">
+                Сформировать заявку
+            </button>
+        </form>
 
     </main>
-{% endblock content %}
+ -->
+
